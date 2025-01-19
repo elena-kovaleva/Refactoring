@@ -1,0 +1,30 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Добавить</h1>
+
+	<div class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'clients'" class="btn btn-light w-100">Назад</a>
+		</div>
+	</div>
+
+	<form [formGroup]="clientFormGroup" (ngSubmit)="save()" class="row mb-3">
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">ФИО</p>
+			<input type="text" formControlName="fio" class="form-control">
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Телефон</p>
+			<input type="text" formControlName="tel" class="form-control">
+		</div>
+		<div class="col-12 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Описание</p>
+			<textarea formControlName="description" class="form-control"></textarea>
+		</div>
+		<div class="col-12 mb-2" data-aos="fade-left">
+			<button type="submit" class="btn btn-primary w-100" [disabled]="clientFormGroup.invalid">Добавить</button>
+		</div>
+	</form>
+
+</div>
+

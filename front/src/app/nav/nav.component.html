@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-primary mb-5 shadow" data-bs-theme="dark">
+	<div class="container">
+		<a appNavigate [navigateURL]="''" class="navbar-brand" role="button">Sphere</a>
+		<button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+				class="navbar-toggler" data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mx-auto">
+
+				<li class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="''" class="nav-link" role="button">Главная</a>
+				</li>
+				<li class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'tours'" class="nav-link" role="button">Туры</a>
+				</li>
+
+				<li *ngIf="role === 'ADMIN' || role === 'MANAGER'" class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'clients'" class="nav-link" role="button">Клиенты</a>
+				</li>
+
+				<li *ngIf="role === 'ADMIN'" class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'users'" class="nav-link" role="button">Пользователи</a>
+				</li>
+				<li *ngIf="role === 'ADMIN'" class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'stats'" class="nav-link" role="button">Аналитика</a>
+				</li>
+
+			</ul>
+			<ul class="navbar-nav">
+				<li *ngIf="role === 'NOT'" class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'login'" class="nav-link" role="button">Вход</a>
+				</li>
+				<li *ngIf="role === 'NOT'" class="nav-item" data-aos="fade-left">
+					<a appNavigate [navigateURL]="'reg'" class="nav-link" role="button">Регистрация</a>
+				</li>
+				<li *ngIf="role !== 'NOT'" class="nav-item" data-aos="fade-left">
+					<a (click)="logout()" class="nav-link" role="button">Выход</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

@@ -1,0 +1,10 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Пользователи</h1>
+
+	@for (i of getSortedUsers(); track i.id) {
+		<div *ngIf="i.id !== userid">
+			<app-user-card [user]="i"></app-user-card>
+		</div>
+	}
+</div>

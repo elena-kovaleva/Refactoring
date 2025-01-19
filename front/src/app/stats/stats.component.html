@@ -1,0 +1,46 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Аналитика</h1>
+
+	<div id="generatePDF" class="row">
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Туры по сезонам</p>
+				<app-stats-tour-seasons></app-stats-tour-seasons>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Туры по купленным сезонам</p>
+				<app-stats-tour-seasons-ordering></app-stats-tour-seasons-ordering>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Заявки по типу тура</p>
+				<app-stats-tour-types></app-stats-tour-types>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Соотношение по полу</p>
+				<app-stats-client-genders></app-stats-client-genders>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Клиенты по статусам</p>
+				<app-stats-client-statuses></app-stats-client-statuses>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 mb-4" data-aos="fade-left">
+			<div class="card card-body border-primary h-100">
+				<p class="fs-4 m-0">Клиенты по категориям возрастов</p>
+				<app-stats-client-categories></app-stats-client-categories>
+			</div>
+		</div>
+	</div>
+
+	<a class="btn btn-primary w-100 my-3" (click)="generatePDF()" data-aos="fade-left">Сформировать отчет</a>
+
+</div>

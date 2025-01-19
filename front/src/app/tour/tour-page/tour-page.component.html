@@ -1,0 +1,35 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">{{ tour.name }}</h1>
+
+	<div class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'tours'" class="btn btn-light w-100">Назад</a>
+		</div>
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a [href]="tour.file" target="_blank" class="btn btn-info w-100">Файл</a>
+		</div>
+		<div *ngIf="role === 'MANAGER'" class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'tour_update'" [queryParams]="{id: tour.id}" class="btn btn-success w-100">Обновить</a>
+		</div>
+		<div *ngIf="role === 'MANAGER'" class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a (click)="delete()" class="btn btn-danger w-100">Удалить</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 col-lg-4 mb-3" data-aos="fade-left">
+			<img [src]="tour.img" alt="img" class="object-fit-cover w-100 rounded-5 shadow border border-primary"
+				 height="500">
+		</div>
+		<div class="col-12 col-lg mb-3" data-aos="fade-left">
+			<p class="fs-4 m-0">{{ 'Страна: ' + tour.country }}</p>
+			<p class="fs-4 m-0">{{ 'Сезон: ' + tour.seasonName }}</p>
+			<p class="fs-4 m-0">{{ 'Тип: ' + tour.typeName }}</p>
+			<p class="fs-5 m-0">{{ tour.description }}</p>
+		</div>
+	</div>
+
+
+</div>
+

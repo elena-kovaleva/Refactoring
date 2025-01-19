@@ -1,0 +1,53 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Туры</h1>
+
+	<div *ngIf="role === 'MANAGER'" class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'tour_add'" class="btn btn-primary w-100">Добавить</a>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Наименование">
+		</div>
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<input type="text" [(ngModel)]="filterCountry" class="form-control" placeholder="Страна">
+		</div>
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<select [(ngModel)]="filterSeason" class="form-select">
+				<option value="">Все сезоны</option>
+				<option *ngFor="let i of seasons | keyvalue" [value]="i.key" [label]="i.value"></option>
+			</select>
+		</div>
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<select [(ngModel)]="filterType" class="form-select">
+				<option value="">Все типы</option>
+				<option *ngFor="let i of types | keyvalue" [value]="i.key" [label]="i.value"></option>
+			</select>
+		</div>
+	</div>
+
+	<div class="row">
+		@for (i of toursSorted; track i.id) {
+			<div class="col-12 col-lg-4 mb-4" data-aos="fade-left">
+				<div class="card shadow rounded-5 border-primary">
+					<div class="card-header p-0 rounded-5 shadow border-primary">
+						<a appNavigate [navigateURL]="'tour'" [queryParams]="{id:i.id}" role="button">
+							<img [src]="i.img" alt="img" class="object-fit-cover w-100 rounded-5" height="250">
+						</a>
+					</div>
+					<div class="card-body">
+						<p class="fs-4 mb-2 text-center">{{ i.name }}</p>
+						<p class="fs-5 m-0">{{ 'Страна: ' + i.country }}</p>
+						<p class="fs-5 m-0">{{ 'Сезон: ' + i.seasonName }}</p>
+						<p class="fs-5 m-0">{{ 'Тип: ' + i.typeName }}</p>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+</div>
+

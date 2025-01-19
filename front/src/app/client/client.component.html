@@ -1,0 +1,34 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Клиенты</h1>
+
+	<div *ngIf="role === 'MANAGER'" class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'client_add'" class="btn btn-primary w-100">Добавить</a>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<input type="text" [(ngModel)]="filterFio" class="form-control" placeholder="ФИО">
+		</div>
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<input type="text" [(ngModel)]="filterTel" class="form-control" placeholder="Телефон">
+		</div>
+	</div>
+
+	<div class="row">
+		@for (i of clientsSorted; track i.id) {
+			<div class="col-12 col-lg-4 mb-4" data-aos="fade-left">
+				<a appNavigate [navigateURL]="'client'" [queryParams]="{id:i.id}" role="button">
+					<div class="card card-body shadow rounded-5 border-primary">
+						<p class="fs-4 mb-2 text-center">{{ i.fio }}</p>
+						<p class="fs-5 m-0">{{ 'Телефон: ' + i.tel }}</p>
+					</div>
+				</a>
+			</div>
+		}
+	</div>
+
+</div>
+

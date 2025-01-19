@@ -1,0 +1,52 @@
+<div class="container">
+
+	<h1 class="text-center mb-5" data-aos="fade-left">Добавить</h1>
+
+	<div class="row mb-3">
+		<div class="col-12 col-lg mb-2" data-aos="fade-left">
+			<a appNavigate [navigateURL]="'tours'" class="btn btn-light w-100">Назад</a>
+		</div>
+	</div>
+
+	<form [formGroup]="tourFormGroup" (ngSubmit)="save()" class="row mb-3">
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Наименование</p>
+			<input type="text" formControlName="name" class="form-control">
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Тип отдыха</p>
+			<select (change)="changeType($event)" class="form-select">
+				<option disabled selected>Выберите тип</option>
+				<option *ngFor="let i of types | keyvalue" [value]="i.key" [label]="i.value"></option>
+			</select>
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Страна</p>
+			<input type="text" formControlName="country" class="form-control">
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Сезон</p>
+			<select (change)="changeSeason($event)" class="form-select">
+				<option disabled selected>Выберите сезон</option>
+				<option *ngFor="let i of seasons | keyvalue" [value]="i.key" [label]="i.value"></option>
+			</select>
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Фотография</p>
+			<input type="file" (change)="changeImg($event)" class="form-control" accept="image/*">
+		</div>
+		<div class="col-12 col-lg-6 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Файл</p>
+			<input type="file" (change)="changeFile($event)" class="form-control" accept="*/*">
+		</div>
+		<div class="col-12 mb-2" data-aos="fade-left">
+			<p class="fs-4 m-0">Описание</p>
+			<textarea formControlName="description" class="form-control"></textarea>
+		</div>
+		<div class="col-12 mb-2" data-aos="fade-left">
+			<button type="submit" class="btn btn-primary w-100" [disabled]="!checkSubmit()">Добавить</button>
+		</div>
+	</form>
+
+</div>
+
