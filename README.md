@@ -10,9 +10,10 @@
 ![image](https://github.com/user-attachments/assets/2d9fbac5-cb49-4458-b433-5ab51ea3831c)
 ## Структурные диаграммы 
 Диаграмма классов программного средства
-![image](https://github.com/user-attachments/assets/70f573a6-1523-425e-b1ea-acab191c3173)
 
-Диаграмма развертывания
+![д классов](https://github.com/user-attachments/assets/220fc3a2-4fd5-4b87-89ff-92caf222c638)
+
+Диаграмма развертывания программного средства
 # Документация
 # Оценка качества кода
 # Тестирование
