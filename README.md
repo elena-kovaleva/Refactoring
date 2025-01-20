@@ -3,11 +3,12 @@
 ## Нотация C4
 Контейнерный уровень архитектуры в нотации C4
 
-![image](https://github.com/user-attachments/assets/1605ed7b-349a-4291-8a0f-339214c5bf3a)
+![C4 2уровень](https://github.com/user-attachments/assets/94cdbfde-0793-4427-b3e7-e934406dabae)
 
 Компонентный уровень архитектуры в нотации C4
 
-![image](https://github.com/user-attachments/assets/2d9fbac5-cb49-4458-b433-5ab51ea3831c)
+![С4 3уровень](https://github.com/user-attachments/assets/beb6c2ad-4df7-458a-94ea-d088ba07e670)
+
 ## Структурные диаграммы 
 Диаграмма классов программного средства
 
