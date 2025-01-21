@@ -31,9 +31,9 @@
 
 ![image](https://github.com/user-attachments/assets/71dc8304-07eb-472a-851b-73138b99aa5a)
 ## Схема данных 
-Схема данных программного средства
+ER-модель данных программного средства
 
-![image](https://github.com/user-attachments/assets/044d7d73-31be-418d-9a5e-9f317f0128ca)
+![image](https://github.com/user-attachments/assets/feba0cf3-1910-4bbf-82df-9f204feab3f1)
 
 # Пользовательский интерфейс
 UI Kit для программного средства
