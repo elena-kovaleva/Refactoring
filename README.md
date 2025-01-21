@@ -113,4 +113,58 @@ User-flow диаграмма программного средства (Упра
 # Оценка качества кода
 # Тестирование
 
+## Интеграционный тест:
+
+@Test
+void findAllSuccess() {
+    given(repository.findAll()).willReturn(tours);
+
+    List<Tour> findAll = service.findAllForTest();
+
+    assertThat(findAll.size()).isEqualTo(tours.size());
+
+    verify(repository, times(1)).findAll();
+}
+
+В тесте findAllSuccess() происходит несколько шагов, которые проверяют корректность работы сервиса, использующего репозиторий для получения данных.
+
+![image](https://github.com/user-attachments/assets/a6d1fb69-c124-4745-92d7-a4fd45a70557)
+
+## Модульный тест:
+
+@Test
+void saveSuccess() {
+    Client save = clients.get(0);
+
+    given(repository.save(save)).willReturn(save);
+
+    Client saved = service.saveForTest(save);
+
+    assertThat(saved.getFio()).isEqualTo(save.getFio());
+    assertThat(saved.getTel()).isEqualTo(save.getTel());
+    assertThat(saved.getPassport()).isEqualTo(save.getPassport());
+    assertThat(saved.getDescription()).isEqualTo(save.getDescription());
+    assertThat(saved.getCategory()).isEqualTo(save.getCategory());
+    assertThat(saved.getGender()).isEqualTo(save.getGender());
+    assertThat(saved.getTourType()).isEqualTo(save.getTourType());
+
+    verify(repository, times(1)).save(save);
+}
+
+В тесте проверяется логика работы метода saveForTest() сервиса ClientService.
+
+![image](https://github.com/user-attachments/assets/9d17f1a3-0cf2-461c-9850-8130f577ddb8)
+
+# Безопасность
+
+Шифрование паролей: пароли пользователей хранятся в зашифрованном виде. Это повышает защиту в случае утечки данных:
+
+private static string GetHashPassword(string password, byte[] salt)
+{
+    using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000, HashAlgorithmName.SHA256))
+    {
+        byte[] hash = pbkdf2.GetBytes(32); // Длина хеша 32 байта (256 бит)
+        return Convert.ToBase64String(hash);
+    }
+}
 
