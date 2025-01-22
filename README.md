@@ -19,9 +19,10 @@
 ![image](https://github.com/user-attachments/assets/f95a4246-a331-435f-9246-755f8bc9f161)
 
 ## Поведенческие диаграммы
-Диаграмма деятельности процесса управления базой клиентов и контактов
+Диаграмма деятельности процесса смены статусов "Контакт-Клиент"
 
-![image](https://github.com/user-attachments/assets/73ccc2ec-b79f-4c50-9883-4f57f4d25665)
+![image](https://github.com/user-attachments/assets/9a77ab33-d35b-4ee0-8eaa-80194a910e8e)
+
 
 Диаграмма последовательности процесса управления базой клиентов и контактов
 
@@ -107,10 +108,20 @@ User-flow диаграмма программного средства (Упра
 ![image](https://github.com/user-attachments/assets/8eb89796-9b4c-424a-a7fd-b390240cfac6)
 
 # Документация
+![image](https://github.com/user-attachments/assets/77dc3bf6-0195-4cc3-abf8-4619eaca36c4)
 
+![image](https://github.com/user-attachments/assets/ab318ca2-4818-47ec-8847-b0c9cc2f490e)
 
+![image](https://github.com/user-attachments/assets/8a14dad2-5264-451d-80c0-2e4dedf56c92)
+
+![image](https://github.com/user-attachments/assets/ddcd0766-7fe6-464a-b55c-1156983960e6)
+
+Полную версию документации к API можно посмотреть по ссылке: https://drive.google.com/file/d/1ptvjl_TW46IZWvJKYRIrc5Wgt1o0FITQ/view?usp=drive_link
 
 # Оценка качества кода
+
+
+
 # Тестирование
 
 ## Интеграционный тест:
@@ -156,6 +167,99 @@ void saveSuccess() {
 ![image](https://github.com/user-attachments/assets/9d17f1a3-0cf2-461c-9850-8130f577ddb8)
 
 # Безопасность
+Пример кода из AuthorizationController:
+Метод PostLogin:
+
+public async Task<IActionResult> PostLogin()
+        {
+            using var reader = new StreamReader(Request.Body);
+            var body = await reader.ReadToEndAsync();
+            var authorization = JsonConvert.DeserializeObject<Authorization>(body);
+
+            if (authorization == null)
+            {
+                return BadRequest();
+            }
+
+            //var (a,b) = HashPassword.GetHashPassword(authorization.Password);
+
+            string sql = @"
+                SELECT 
+                    u.employee_id,
+                    u.username,
+                    u.password_hash,
+                    u.salt,
+                    r.role_name
+                FROM 
+                    Users u
+                JOIN 
+                    Roles r ON u.role_id = r.role_id
+                WHERE 
+                    u.username = @username;";
+
+            using var connection = new NpgsqlConnection(DataBase.connString);
+            connection.Open();
+            using (var command = new NpgsqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@username", authorization.Login);
+
+                using (var readerSQL = command.ExecuteReader())
+                {
+                    if (readerSQL.Read())
+                    {
+                        string passwordHash = readerSQL.GetString(2);
+                        byte[] salt = (byte[])readerSQL[3];
+
+                        if (HashPassword.VerifyPassword(authorization.Password, passwordHash, salt))
+                        {
+                            int employee_id = readerSQL.GetInt32(0);
+                            string userName = readerSQL.GetString(1);
+                            string roleName = readerSQL.GetString(4);
+                            var сookiesManager = new CookiesManager();
+                            сookiesManager.GenerateTokenAndSet(Response, userName, roleName, employee_id);
+                            return Ok();
+                        }
+
+                    }
+                }
+            }
+            return Unauthorized();
+        }
+
+Метод LogOut:
+
+[HttpDelete(Name = "LogOut")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> LogOut()
+        {
+            var сookiesManager = new CookiesManager();
+
+            if (!сookiesManager.CheckTokenValidity(Request, CookiesManager.Roles.GetAll()))
+            {
+                return Unauthorized();
+            }
+
+            CookiesManager.DeleteAllCookies(Response);
+
+            return Ok();
+        }
+        
+Реализация определения ролей в классе TokenValidetator:
+
+public struct Roles
+{
+    public const string ADMIN = "Admin";
+    public const string MANAGER = " MANAGER";
+    
+
+    public static string[] GetAll()
+    {
+        string[] res = { ADMIN, MANAGER };
+
+        return res;
+    }
+}
 
 Шифрование паролей: пароли пользователей хранятся в зашифрованном виде. Это повышает защиту в случае утечки данных:
 
