@@ -120,6 +120,7 @@ User-flow диаграмма программного средства (Упра
 
 # Оценка качества кода
 
+![image](https://github.com/user-attachments/assets/ff71238a-81b7-4aa4-9edc-b07c59bf2d05)
 
 
 # Тестирование
