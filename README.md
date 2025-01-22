@@ -273,5 +273,37 @@ private static string GetHashPassword(string password, byte[] salt)
     }
 }
 
+## Развертывание
 
+Dockerfile для сервиса на Java:
+
+Используем официальный образ OpenJDK
+FROM openjdk:11-jre-slim
+
+Устанавливаем рабочую директорию
+WORKDIR /app
+
+Копируем JAR файл приложения
+COPY target/my-java-app.jar app.jar
+
+Указываем команду для запуска приложения
+CMD ["java", "-jar", "app.jar"] Docker-compose:
+
+version: '3.9'
+
+services: app: build: context: . dockerfile: Dockerfile ports: - "8080:8080" environment: - DB_HOST=postgres - DB_USER=app_user - DB_PASSWORD=app_password - DB_NAME=app_db - REDIS_HOST=redis - NATS_URL=nats:4222 depends_on: - postgres - redis - nats
+
+postgres: image: postgres:15 environment: POSTGRES_USER: app_user POSTGRES_PASSWORD: app_password POSTGRES_DB: app_db volumes: - postgres_data:/var/lib/postgresql/data ports: - "5432:5432"
+
+redis: image: redis:7 ports: - "6379:6379"
+
+nats: image: nats:2.9 ports: - "4222:4222" environment: - JS_ENABLE=true # Включение JetStream
+
+volumes: postgres_data:
+
+version: '3.8'
+
+services: app: build: . ports: - "8080:8080" environment: SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/mydb SPRING_DATASOURCE_USERNAME: root SPRING_DATASOURCE_PASSWORD: password depends_on: - db
+
+db: image: mysql:8.0 restart: always environment: MYSQL_DATABASE: mydb MYSQL_ROOT_PASSWORD: password ports: - "3306:3306"
 
