@@ -12,25 +12,25 @@
 ## Структурные диаграммы 
 Диаграмма классов программного средства
 
-![д классов](https://github.com/user-attachments/assets/220fc3a2-4fd5-4b87-89ff-92caf222c638)
+![image](https://github.com/user-attachments/assets/1cb41c8f-d196-4188-8210-2afcdeee65fd)
 
 Диаграмма развертывания программного средства
 
-![image](https://github.com/user-attachments/assets/f95a4246-a331-435f-9246-755f8bc9f161)
+![image](https://github.com/user-attachments/assets/6247064c-274a-4486-9788-5c79c0577fd0)
 
 ## Поведенческие диаграммы
-Диаграмма деятельности процесса смены статусов "Контакт-Клиент"
+Диаграмма деятельности процесса смены статуса "Контакт-Клиент"
 
-![image](https://github.com/user-attachments/assets/9a77ab33-d35b-4ee0-8eaa-80194a910e8e)
+![image](https://github.com/user-attachments/assets/8ae10eab-a6e6-4d7b-8b94-9afe84ca9782)
 
+Диаграмма последовательности процесса смены статуса "Контакт-Клиент"
 
-Диаграмма последовательности процесса управления базой клиентов и контактов
-
-![image](https://github.com/user-attachments/assets/c7182014-6249-441b-b51c-0a19a135ad76)
+![image](https://github.com/user-attachments/assets/2bd9ed0e-926c-4194-9939-052d672827b1)
 
 Диаграмма состояний объекта "Статус клиента"
 
-![image](https://github.com/user-attachments/assets/71dc8304-07eb-472a-851b-73138b99aa5a)
+![image](https://github.com/user-attachments/assets/3405eebb-ad2b-4683-a370-2f2c00a212e1)
+
 ## Схема данных 
 ER-модель данных программного средства
 
